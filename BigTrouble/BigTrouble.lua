@@ -4,24 +4,22 @@
     
     Textures for the castbar taken from agUF and oCB
 --]]
+local waterfall = AceLibrary("Waterfall-1.0")
 
-
-local Colors = 
-{
+local Colors = {
 	complete	= {r=0, g=1, b=0},
 	autoShot	= {r=1, g=.7, b=0},
 	aimedShot	= {r=.3, g=.3, b=1},
 	failed		= {r=1, g=0, b=0},
 }
 
-local Textures  =
-{
-	["Perl"]    = "Interface\\AddOns\\BigTrouble\\textures\\perl",
-	["Smooth"]	= "Interface\\AddOns\\BigTrouble\\textures\\smooth",
-	["Glaze"]	= "Interface\\AddOns\\BigTrouble\\textures\\glaze",
-	["Default"]	= "Interface\\TargetingFrame\\UI-StatusBar",
-    ["BantoBar"]    = "Interface\\AddOns\\BigTrouble\\textures\\BantoBar",
-    ["Gloss"] 	= "Interface\\AddOns\\BigTrouble\\textures\\Gloss",
+local Textures  = {
+	["Perl"]     = "Interface\\AddOns\\BigTrouble\\Textures\\perl",
+	["Smooth"]	 = "Interface\\AddOns\\BigTrouble\\Textures\\smooth",
+	["Glaze"]	 = "Interface\\AddOns\\BigTrouble\\Textures\\glaze",
+	["Default"]	 = "Interface\\TargetingFrame\\UI-StatusBar",
+    ["BantoBar"] = "Interface\\AddOns\\BigTrouble\\Textures\\BantoBar",
+    ["Gloss"] 	 = "Interface\\AddOns\\BigTrouble\\Textures\\Gloss",
 }
 
 local startTime, endTime, delay, duration
@@ -36,7 +34,9 @@ local gratuityTextLeft1 = gratuity.vars.Llines[1]
 function BigTrouble:OnInitialize()
 
 	self:RegisterDB("BigTroubleDB")
-	self:RegisterChatCommand( {"/btrouble"}, self.options )
+	self:RegisterChatCommand( {"/btroublecl"}, self.options )
+	self:RegisterChatCommand({"/btrouble"}, function() waterfall:Open('BigTrouble') end)
+	waterfall:Register('BigTrouble', 'aceOptions', self.options, 'title','BigTrouble 1.0. Revision: 17372','colorR', 1, 'colorG', 0.6, 'colorB', 0.4) 
 	self:RegisterDefaults('profile', {
 	    Bar = {
 			width		= 255,
